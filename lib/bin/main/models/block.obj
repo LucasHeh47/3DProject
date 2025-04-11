@@ -1,0 +1,65 @@
+# OBJ file generated from provided vertex, texture coordinate, and index arrays
+
+# Vertices
+v -1 1 1
+v -1 -1 1
+v 1 -1 1
+v 1 1 1
+v -1 1 -1
+v 1 1 -1
+v -1 -1 -1
+v 1 -1 -1
+v -1 1 -1
+v 1 1 -1
+v -1 1 1
+v 1 1 1
+v 1 1 1
+v 1 -1 1
+v -1 1 1
+v -1 -1 1
+v -1 -1 -1
+v 1 -1 -1
+v -1 -1 1
+v 1 -1 1
+
+# Texture Coordinates
+vt 0.0 0.0
+vt 0.0 1
+vt 1 1
+vt 1 0.0
+vt 0.0 0.0
+vt 1 0.0
+vt 0.0 1
+vt 1 1
+vt 0.0 1
+vt 1 1
+vt 0.0 1.0
+vt 1 1.0
+vt 0.0 0.0
+vt 0.0 1
+vt 1 0.0
+vt 1 1
+vt 1 0.0
+vt 1.0 0.0
+vt 1 1
+vt 1.0 1
+
+# Faces
+# The indices from your arrays (zero-based) are incremented by 1 to form faces:
+f 1/1 2/2 4/4
+f 4/4 2/2 3/3
+
+f 9/9 11/11 12/12
+f 10/10 9/9 12/12
+
+f 13/13 14/14 8/8
+f 6/6 13/13 8/8
+
+f 15/15 16/16 7/7
+f 5/5 15/15 7/7
+
+f 17/17 19/19 20/20
+f 18/18 17/17 20/20
+
+f 5/5 7/7 8/8
+f 6/6 5/5 8/8
