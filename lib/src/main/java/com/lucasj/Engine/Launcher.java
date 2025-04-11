@@ -6,7 +6,7 @@ import com.lucasj.Engine.Core.EngineManager;
 import com.lucasj.Engine.Core.WindowManager;
 import com.lucasj.Engine.Core.Utils.Consts;
 
-import _3DProject.TestGame;
+import _3DProject.TestGame.TestGame;
 
 public class Launcher {
 

@@ -28,31 +28,37 @@ public class RenderManager {
 		shader.createUniform("transformationMatrix");
 		shader.createUniform("projectionMatrix");
 		shader.createUniform("viewMatrix");
+
 	}
 	
 	public void render(Entity entity, Camera camera) {
-		clear();
-		shader.bind();
-		shader.setUniform("textureSampler", 0);
-		shader.setUniform("transformationMatrix", Transformation.createTransformationMatrix(entity));
-		shader.setUniform("projectionMatrix", window.updateProjectionMatrix());
-		shader.setUniform("viewMatrix", Transformation.getViewMatrix(camera));
-		
-		GL30.glBindVertexArray(entity.getModel().getId());
-		GL20.glEnableVertexAttribArray(0);
-		GL20.glEnableVertexAttribArray(1);
-		GL13.glActiveTexture(GL13.GL_TEXTURE0);
-		// Bind your texture first (textureID is your texture's identifier)
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, entity.getModel().getTexture().getId());
-		GL11.glDrawElements(GL11.GL_TRIANGLES, entity.getModel().getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
-		// Set the texture parameters to use nearest-neighbor filtering
-		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+	    //clear();
+	    shader.bind();
+	    shader.setUniform("textureSampler", 0);
+	    shader.setUniform("transformationMatrix", Transformation.createTransformationMatrix(entity));
+	    shader.setUniform("projectionMatrix", window.updateProjectionMatrix());
+	    shader.setUniform("viewMatrix", Transformation.getViewMatrix(camera));
 
-		GL20.glDisableVertexAttribArray(0);
-		GL20.glDisableVertexAttribArray(1);
-		GL30.glBindVertexArray(0);
-		shader.unbind();
+	    GL30.glBindVertexArray(entity.getModel().getId());
+	    GL20.glEnableVertexAttribArray(0);
+	    GL20.glEnableVertexAttribArray(1);
+	    GL13.glActiveTexture(GL13.GL_TEXTURE0);
+	    
+	    // Bind the texture
+	    GL11.glBindTexture(GL11.GL_TEXTURE_2D, entity.getModel().getTexture().getId());
+	    
+	    // Set texture filtering parameters BEFORE drawing
+	    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+	    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+	    
+	    // Draw the elements
+	    GL11.glDrawElements(GL11.GL_TRIANGLES, entity.getModel().getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
+	    
+	    // Clean up
+	    GL20.glDisableVertexAttribArray(0);
+	    GL20.glDisableVertexAttribArray(1);
+	    GL30.glBindVertexArray(0);
+	    shader.unbind();
 	}
 	
 	public void clear() {
@@ -61,5 +67,6 @@ public class RenderManager {
 	
 	public void cleanup() {
 		shader.cleanup();
+		shader.bind();
 	}
 }
